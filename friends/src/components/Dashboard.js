@@ -21,7 +21,7 @@ const Dashboard = props => {
             <h1>Dashboard</h1>
             {props.error && <p>{props.error}</p>}
             {props.friends.map(friend => (
-                <h2>{friend.name}</h2>
+                <Friend key={id} {...friend}>
             ))}  
         </div> 
     )
@@ -30,23 +30,23 @@ const Dashboard = props => {
 export default connect(null, { getFriends })(Dashboard);
 
 
-    return (
-        <>
-            {props.error && <p>{props.error}</p>}
-            {props.breweries.map(friend => (
-        <Friend key={friend.id} brewery={friend} />
-      ))}   
-        </>
-    );
-};
+//     return (
+//         <>
+//             {props.error && <p>{props.error}</p>}
+//             {props.breweries.map(friend => (
+//         <Friend key={friend.id} brewery={friend} />
+//       ))}   
+//         </>
+//     );
+// };
 
-const mapStateToProps = state => {
-    return {
-        // example >> key: state.key,
-        breweries: state.breweries,
-        isFetching: state.isFetching,
-        error: state.error
-    }
-}
+// const mapStateToProps = state => {
+//     return {
+//         // example >> key: state.key,
+//         breweries: state.breweries,
+//         isFetching: state.isFetching,
+//         error: state.error
+//     }
+// }
 
-export default connect(mapStateToProps, { fetchFacts })(List);
+// export default connect(mapStateToProps, { fetchFacts })(List);

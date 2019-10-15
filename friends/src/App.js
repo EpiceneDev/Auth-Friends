@@ -1,11 +1,13 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
-
+import { createStore } from 'redux';
+import reducer from './reducers'
 import Login from './components/authentication/Login';
 import Dashboard from './components/Dashboard';
 
 import './App.css';
 
+const store = createStore(reducer);
 
 function App() {
   return (
@@ -20,8 +22,8 @@ function App() {
           </li>
         </ul>
         <Switch>
-          <Route path="/protected" component={Dashboard} />
           <Route path-="/login" component={Login} />
+          <Route path="/protected" component={Dashboard} />
           <Route component={Login} />
         </Switch>
       </div>
