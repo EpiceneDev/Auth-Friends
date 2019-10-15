@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 
 const Login = (props) => {
     const [user, setUser] = useState({
-        name: '',
+        username: '',
         password: '',
         isLoading: false
     });
@@ -14,30 +15,54 @@ const Login = (props) => {
 
     const handleSubmit = e => {
         e.preventDefault();
+        axios
+            .post(
+                "http://localhost:5000/api/login",
+                user
+            )
+            .then(response => {
+                console.log("user", response);
+                localStorage.setItem("token", response.data.payload);
+                //localStorage.setItem("id", response.data.id);
+                //props.history.push("/dashboard");
+                // setUser({ loading: false });
+                // console.log(response);
+            })
+            .catch(error => {
+                // console.log("error", error.response);
+                setUser({
+                username: "",
+                password: ""
+                });
+            });
     };
 
 
     return (
         <div className='login'>
             <form onSubmit={handleSubmit}>
-                <label> 
+                <ul><label> 
                     LOGIN 
-                        <input 
-                            type='name' 
-                            name='name' 
-                            value={user.name} 
-                            placeholder='Name' 
-                            onChange={handleChange}
-                        />
-                        <input 
-                            type='password' 
-                            name='password'
-                            value={user.password}
-                            placeholder='Password' 
-                            onChange={handleChange}
-                        />
+                        <li>
+                            <input 
+                                type='username' 
+                                name='username' 
+                                value={user.username} 
+                                placeholder='Name' 
+                                onChange={handleChange}
+                            />
+                        </li>
+                        <li>
+                            <input 
+                                type='password' 
+                                name='password'
+                                value={user.password}
+                                placeholder='Password' 
+                                onChange={handleChange}
+                            />
+                        </li>
                         <button>Submit</button>
-                </label>
+                </label></ul>
             </form>
         </div>
     )
