@@ -1,25 +1,25 @@
 import React, { useState } from 'react';
 
-export default Login = (props) => {
+const Login = (props) => {
     const [user, setUser] = useState({
         name: '',
         password: '',
         isLoading: false
     });
 
-    handleChange = e => {
+    const handleChange = e => {
         console.log(e.target.value)
-        setUser({...user, [e.target.name]: event.target.value});
-    }
+        setUser({...user, [e.target.name]: e.target.value});
+    };
 
-    onSubmit = e => {
+    const handleSubmit = e => {
         e.preventDefault();
-    }
+    };
 
 
     return (
         <div className='login'>
-            <form submit={onSubmit}>
+            <form onSubmit={handleSubmit}>
                 <label> 
                     LOGIN 
                         <input 
@@ -42,3 +42,5 @@ export default Login = (props) => {
         </div>
     )
 };
+
+export default Login;
