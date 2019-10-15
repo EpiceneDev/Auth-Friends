@@ -1,5 +1,35 @@
-import axios from 'axios';
+import { FETCH_FRIENDS_START, FETCH_FRIENDS_SUCCESS, FETCH_FRIENDS_FAILURE } from '../actions';
 
-export const FETCH_FRIENDS_START = "FETCH_FRIENDS_START";
-export const FETCH_FRIENDS_SUCCESS = "FETCH_FRIENDS_SUCCESS";
-export const FETCH_FRIENDS_FAILURE = "FETCH_FRIENDS_FAILURE";
+const initialState = {
+    friends: [],
+    isFetching: false,
+    error: ''
+};
+
+const reducer = (state = initialState, action) => {
+    switch(action.type) {
+        case FETCH_FRIENDS_START:
+            return {
+                ...state,
+                isFetching: true,
+                error: ''
+            };
+        case FETCH_FRIENDS_SUCCESS:
+            return {
+                ...state,
+                isFetching: false,
+                error: '',
+                breweries: action.payload
+            };
+        case FETCH_FRIENDS_FAILURE:
+            return {
+                ...state,
+                isFetching: false,
+                error: action.payload
+            };
+        default:
+            return state;
+    };
+};
+
+export default reducer;
