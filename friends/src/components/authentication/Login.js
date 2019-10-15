@@ -4,8 +4,7 @@ import axios from 'axios';
 const Login = (props) => {
     const [user, setUser] = useState({
         username: '',
-        password: '',
-        isLoading: false
+        password: ''
     });
 
     const handleChange = e => {
@@ -23,10 +22,7 @@ const Login = (props) => {
             .then(response => {
                 console.log("user", response);
                 localStorage.setItem("token", response.data.payload);
-                //localStorage.setItem("id", response.data.id);
-                //props.history.push("/dashboard");
-                // setUser({ loading: false });
-                // console.log(response);
+                props.history.push("/protected");
             })
             .catch(error => {
                 // console.log("error", error.response);

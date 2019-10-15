@@ -1,11 +1,11 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
-import Login from './components/authentication/Login';
 
+import Login from './components/authentication/Login';
 import Dashboard from './components/Dashboard';
 
-
 import './App.css';
+
 
 function App() {
   return (
@@ -16,7 +16,7 @@ function App() {
             <Link to="/login">Login</Link>
           </li>
           <li>
-            <Link to="/protected">Dashboard</Link>
+            <Link to="/protected">Protected Page</Link>
           </li>
         </ul>
         <Switch>
