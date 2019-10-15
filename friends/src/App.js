@@ -7,8 +7,6 @@ import Dashboard from './components/Dashboard';
 
 import './App.css';
 
-const store = createStore(reducer);
-
 function App() {
   return (
     <Router>
@@ -22,9 +20,8 @@ function App() {
           </li>
         </ul>
         <Switch>
-          <Route path-="/login" component={Login} />
+          <Route path="/login" component={Login} />
           <Route path="/protected" component={Dashboard} />
-          <Route component={Login} />
         </Switch>
       </div>
     </Router>

@@ -19,7 +19,7 @@ const reducer = (state = initialState, action) => {
                 ...state,
                 isFetching: false,
                 error: '',
-                breweries: action.payload
+                friends: action.payload
             };
         case FETCH_FRIENDS_FAILURE:
             return {

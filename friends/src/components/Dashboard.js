@@ -2,10 +2,11 @@ import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { getFriends } from '../actions';
 import Friend from './Friend';
+
 const Dashboard = props => {
     console.log(props)
     useEffect(() => {
-        props.fetchFacts();
+        props.getFriends();
     }, []);
     if(props.isFetching) {
         // usually a spinner (react-loader-spinner)
