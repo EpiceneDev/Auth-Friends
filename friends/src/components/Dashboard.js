@@ -1,11 +1,52 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { getFriends } from '../actions';
+import Friend from './Friend';
 
-export default function Dashboard() {
+const Dashboard = props => {
+    console.log(props)
+
+    useEffect(() => {
+        props.fetchFacts();
+    }, []);
+
+    if(props.isFetching) {
+        // usually a spinner (react-loader-spinner)
+        return <h2>Loading List...</h2>
+    };
+
+
     return(
-        <h1>Dashboard</h1>
+        <div>
+            <h1>Dashboard</h1>
+            {props.error && <p>{props.error}</p>}
+            {props.friends.map(friend => (
+                <h2>{friend.name}</h2>
+            ))}  
+        </div> 
     )
 };
 
-export default connect(null, {getFriends})(Dashboard);
+export default connect(null, { getFriends })(Dashboard);
+
+
+    return (
+        <>
+            {props.error && <p>{props.error}</p>}
+            {props.breweries.map(friend => (
+        <Friend key={friend.id} brewery={friend} />
+      ))}   
+        </>
+    );
+};
+
+const mapStateToProps = state => {
+    return {
+        // example >> key: state.key,
+        breweries: state.breweries,
+        isFetching: state.isFetching,
+        error: state.error
+    }
+}
+
+export default connect(mapStateToProps, { fetchFacts })(List);

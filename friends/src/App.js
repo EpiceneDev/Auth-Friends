@@ -20,8 +20,8 @@ function App() {
           </li>
         </ul>
         <Switch>
-          <Route path-="/login" component={Login} />
           <Route path="/protected" component={Dashboard} />
+          <Route path-="/login" component={Login} />
           <Route component={Login} />
         </Switch>
       </div>
