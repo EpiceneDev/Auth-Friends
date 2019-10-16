@@ -4,6 +4,7 @@ import { createStore } from 'redux';
 import reducer from './reducers'
 import Login from './components/authentication/Login';
 import Dashboard from './components/Dashboard';
+import PrivateRoute from './components/PrivateRoute'
 
 import './App.css';
 
@@ -21,7 +22,7 @@ function App() {
         </ul>
         <Switch>
           <Route path="/login" component={Login} />
-          <Route path="/protected" component={Dashboard} />
+          <PrivateRoute path="/protected" component={Dashboard} />
         </Switch>
       </div>
     </Router>

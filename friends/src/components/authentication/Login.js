@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import axios from 'axios';
+import { axiosWithAuth } from '../../auth/axiosWithAuth';
 
 const Login = (props) => {
     const [user, setUser] = useState({
@@ -14,9 +14,9 @@ const Login = (props) => {
 
     const handleSubmit = e => {
         e.preventDefault();
-        axios
+        axiosWithAuth()
             .post(
-                "http://localhost:5000/api/login",
+                "/api/login",
                 user
             )
             .then(response => {
