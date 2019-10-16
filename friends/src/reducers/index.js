@@ -1,9 +1,10 @@
-import { FETCH_FRIENDS_START, FETCH_FRIENDS_SUCCESS, FETCH_FRIENDS_FAILURE } from '../actions';
+import { FETCH_FRIENDS_START, FETCH_FRIENDS_SUCCESS, FETCH_FRIENDS_FAILURE, ADD_FRIENDS_START, ADD_FRIENDS_SUCCESS, ADD_FRIENDS_FAILURE } from '../actions';
 
 const initialState = {
     friends: [],
     isFetching: false,
-    error: ''
+    error: '',
+    isAdding: false
 };
 
 const reducer = (state = initialState, action) => {
@@ -25,6 +26,24 @@ const reducer = (state = initialState, action) => {
             return {
                 ...state,
                 isFetching: false,
+                error: action.payload
+            };
+        case ADD_FRIENDS_START:
+            return {
+                ...state,
+                isAdding: true,
+                error: ''
+            };
+        case ADD_FRIENDS_SUCCESS:
+            return {
+                ...state,
+                isAdding: false,
+                error: ''
+            };
+        case ADD_FRIENDS_FAILURE:
+            return {
+                ...state,
+                isAdding: false,
                 error: action.payload
             };
         default:

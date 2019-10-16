@@ -20,7 +20,7 @@ const Login = (props) => {
                 user
             )
             .then(response => {
-                console.log("user", response);
+                //console.log("user", response);
                 localStorage.setItem("token", response.data.payload);
                 props.history.push("/protected");
             })
@@ -37,18 +37,19 @@ const Login = (props) => {
     return (
         <div className='login'>
             <form onSubmit={handleSubmit}>
-                <ul><label> 
-                    LOGIN 
-                        <li>
+                
+                    <label> 
+                        LOGIN 
+                        <ul>
                             <input 
-                                type='username' 
+                                type='text' 
                                 name='username' 
                                 value={user.username} 
                                 placeholder='Name' 
                                 onChange={handleChange}
                             />
-                        </li>
-                        <li>
+                        
+                        
                             <input 
                                 type='password' 
                                 name='password'
@@ -56,9 +57,11 @@ const Login = (props) => {
                                 placeholder='Password' 
                                 onChange={handleChange}
                             />
-                        </li>
+                        
                         <button>Submit</button>
-                </label></ul>
+                        </ul>
+                    </label>
+                
             </form>
         </div>
     )
