@@ -38,7 +38,8 @@ const reducer = (state = initialState, action) => {
             return {
                 ...state,
                 isAdding: false,
-                error: ''
+                error: '',
+                friends: action.payload
             };
         case ADD_FRIENDS_FAILURE:
             return {

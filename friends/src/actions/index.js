@@ -17,12 +17,14 @@ export const getFriends = () => dispatch => {
         .catch(err => dispatch({ type: FETCH_FRIENDS_FAILURE, payload: err.response }));
 }
 
-export const addFriend = ({ friend }) => dispatch => {
+export const addFriend = (friend) => dispatch => {
     dispatch({ type: ADD_FRIENDS_START });
     axiosWithAuth()
-        .get('http://localhost:5000/api/friends', friend)
-        .then(res => dispatch({ type: ADD_FRIENDS_SUCCESS, payload: res.data }))
+        .post('/api/friends', friend)
+        .then(res => console.log("POST!!!", res.data))
+        .catch(err => console.log("POST!!!", err))
+        // .then(res => dispatch({ type: ADD_FRIENDS_SUCCESS, payload: res.data }))
         // .then(res => console.log(res.data))
-        .catch(err => dispatch({ type: ADD_FRIENDS_FAILURE, payload: err.response }));
+        // .catch(err => dispatch({ type: ADD_FRIENDS_FAILURE, payload: err.response }));
 }
 

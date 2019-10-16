@@ -9,49 +9,29 @@ const AddFriend = props => {
     const [friend, setFriend] = useState({
         name: '',
         age: '',
-        password: ''
+        email: ''
     });
 
     const handleChange = e => {
-        console.log(e.target.value)
+        //console.log(e.target.value)
         setFriend({
             ...friend, 
             [e.target.name]: e.target.value
         });
-        
+        console.log("FRIEND:", friend)
     };
 
 
 
     const handleSubmit = e => {
-        const id = props.match.params.id;
-        e.preventDefault();
-        if(friend.name != "" && friend.age != "" && friend.email != "") {
-            axiosWithAuth()
-                .post(
-                    "/api/friends",
-                    friend
-                )
-                .then(response => {
-                    console.log("POST", response);
-                    props.addFriend(response.data);
-                    //setFriend({ name: "", age: "", email: "" })
-                    //props.history.push("/protected");
-                })
-                .catch(error => {
-                    // console.log("error", error.response);
-                    setFriend({
-                    username: "",
-                    password: ""
-                    });
-                });
-        }
+        //e.preventDefault();
+        props.addFriend(friend);
     };
 
 
     return (
         <div className='friend-add'>
-            <form onSubmit={props.addFriend}>
+            <form onSubmit={handleSubmit}>
                 <label> 
                     Add a friend! 
                         <ul>
@@ -89,9 +69,5 @@ const AddFriend = props => {
     )
 };
 
-const mapStateToProps = state => {
-    return {
-        friend: state.friend 
-    }
-}
-export default connect(mapStateToProps, { addFriend })(AddFriend);
+
+export default connect(null, { addFriend })(AddFriend);
